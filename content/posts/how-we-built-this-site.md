@@ -10,7 +10,7 @@ description = "How to build a website and go live in 3 hours"
 showFullContent = false
 +++
 
-Spoiler alert, we did it using [**Hugo**](https://gohugo.io/)
+Spoiler alert: We did it using [**Hugo**](https://gohugo.io/), a framework for building websites.
 
 ## Our goals were
 
@@ -34,11 +34,11 @@ We watched one video on YouTube!
 
 Had the site running in 20 minutes using the theme [**Terminal**](https://github.com/panr/hugo-theme-terminal) by [**panr**](https://github.com/panr)
 
+`Tip`: Have a look at the Terminal theme sample site in the `content` and `content\blogs` folders to see how they did their Markdown and just copy that.
+
 ### Hosting
 
 We did not like the the option using GitHub Pages so went for [**Netlify**](https://www.netlify.com/) as we thought it was just a beautiful bit of technology to work with.
-
-`Tip`: Have a look at the Terminal theme sample site in the `content` and `content\blogs` folders to see how they did their Markdown and just copy that.
 
 Our workflow:
 
@@ -47,6 +47,6 @@ Our workflow:
 - Push to Github.
 - Netlify auto detects new changes on master and deploys.
 
-It couldn't be more simple.
+It couldn't be more simple!
 
 Enjoy!
