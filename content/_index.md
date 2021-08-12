@@ -2,6 +2,10 @@
 framed = true
 +++
 
-# Hello there!
+# Hello there
 
-Welcome in demo of the `Terminal` theme. Please, look around and check whether this is what you are looking for.
+And welcome to our world at `alt-f`
+
+We are the team running the Staking pool `alt-f` on `Cardano` and invite you to look around and get to know us.
+
+

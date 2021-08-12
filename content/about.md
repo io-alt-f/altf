@@ -8,14 +8,14 @@ author = "Shawn V"
 
 Who are we?
 
-We are a team of five developers and Dev Ops who work together in a global financial application called Fiskl. (Yes we doing this with their love and support!)
+We are a team of developers and Dev Ops who have worked together for the last four years on an traditaional finance platfrom called Fiskl.
 
 Although there are only five of us we cover the contients of North America, Europe, Africa and Australasia. So if you are from Antarctica, Asia or South America then join us so we can cover the globe.
 
-We are responsible for building the Cardano Staking pool **ALT-F** which stands for Another Future or Alternative Finance but we will leave that for you to decide.
+We are responsible for building the Cardano Staking pool **alt-f** which stands for `Another Future`. It was originally going to stand for `Alternative Finance` but that sounds to boring.
 
-We were tasked as part of our work in Fiskl to investigate different blockchain technologies for moving traditional invoicing to the blockchain and even to replace tradiational invoice factoring with various emerging crypto solutions.
-Cardano stood out and we love the project from the start. To use Cardano we had to set up and run Cardano nodes so settng up a Stake Pool was the natural next step.
+We got here because we were tasked at Fiskl to investigate different blockchain technologies for moving traditional invoicing to the blockchain and even to replace tradiational invoice factoring with various emerging crypto solutions.
+Cardano stood out and we love it from the start. We became very adept at running Cardano nodes so a `Stake Pool` was always on the cards.
 
 Setting up and running a pool reliably is not simple task but with our combined skills and the desire to be part of Cardano and contribute to its decentrilization we couldn't resist.
 Running a Stake Pool is an essential part of making Cardano decentralized and the way Cardano limits the size of the pools ensures that no single or group of entities controls significant amount of nodes. This keeps Cardano safe and it's why we consider it the safest blockchain out there.
