@@ -8,18 +8,18 @@ author = "Shawn V"
 
 Shawn, Alex, Chris, Monica & Luca
 
-We are a team of developers and Dev Ops who have worked together for years.
+We are a team of developers and Dev Ops who have worked together for many years.
 
-Although there are only five of us we cover the contients of North America, Europe, Africa and Australasia. So if you are from Antarctica, Asia or South America then join us so we can cover the globe.
+Although we are only five we cover the continents of North America, Europe, Africa and Australasia. Looking for people from Antarctica, Asia or South America to complete the team :smile:
 
-We are responsible for building the Cardano Staking pool **alt-f** which might stand for `Another Future`.
+We are responsible for building the Cardano Staking pool **`alt-f`** which might stand for `Another Future` or might not, we are undecided.
 
-We are here because as part of our current job as a tem we had to investigate different blockchain technologies for moving traditional invoicing to the blockchain and even to replace tradiational invoice factoring with various emerging crypto solutions.
+We are here because as part of our current job as a tem we had to investigate different blockchain technologies for moving traditional invoicing to the blockchain and even to replace traditional invoice factoring with various emerging crypto solutions.
 Cardano stood out and we love it from the start. We became very adept at running Cardano nodes so a `Stake Pool` was always the next step.
 
 Setting up and reliably running a pool reliably is not simple task but Stake Pools are an essential part of making Cardano decentralized and we wanted to be part of that.
 
-So there you have it...
+So there you have it`...`
 
 Let's move step by step into this brave new future together! :earth_africa:
 
