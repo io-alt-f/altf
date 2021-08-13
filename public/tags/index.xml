@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Alt-f</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Alt-f</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <copyright>@alt-f 2021 all rights reserved</copyright>
+    <lastBuildDate>Wed, 11 Aug 2021 14:59:44 +0100</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hugo</title>
+      <link>/tags/hugo/</link>
+      <pubDate>Wed, 11 Aug 2021 14:59:44 +0100</pubDate>
+      
+      <guid>/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>simplify</title>
+      <link>/tags/simplify/</link>
+      <pubDate>Wed, 11 Aug 2021 14:59:44 +0100</pubDate>
+      
+      <guid>/tags/simplify/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

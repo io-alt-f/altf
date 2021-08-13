@@ -1,9 +1,9 @@
 +++
-title = "Everything you need to know about staking with Cardano"
+title = "Staking with Cardano"
 date = "2021-08-11"
 author = "Shawn V"
 cover = "img/cardano-staking.jpg"
-description = "Cardano's Shelley upgrade introduces staking rewards, allowing ADA holders to safely earn interest with their ADA."
+description = "Cardano's Shelley upgrade allows ADA holders to safely earn interest."
 +++
 
 ## Summary

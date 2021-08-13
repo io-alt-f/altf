@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alt-f</title>
+    <link>/</link>
+    <description>Recent content on Alt-f</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <copyright>@alt-f 2021 all rights reserved</copyright>
+    <lastBuildDate>Wed, 11 Aug 2021 14:59:44 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How we built this website in 3 hours</title>
+      <link>/posts/how-we-built-this-site/</link>
+      <pubDate>Wed, 11 Aug 2021 14:59:44 +0100</pubDate>
+      
+      <guid>/posts/how-we-built-this-site/</guid>
+      <description>Spoiler alert: We did it using Hugo, a framework for building websites.
+Our goals were  Minimmal to zero HTML,CSS and JS coding. Simple deployment. No dedicated CI tools. Integrated with git using Github or Bitbucket. No server or ssl management. Static site generator for simplicity, security &amp;amp; speed. Easy to update and roll back.  Hosting requirements  As easy and cheap as possible. Safe &amp;amp; reliable.  Using this list we put out the question to our developer friends and Hugo was somewhere in the mix.</description>
+    </item>
+    
+    <item>
+      <title>Everything you need to know about staking with Cardano</title>
+      <link>/posts/hello/</link>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/hello/</guid>
+      <description>Summary  Cardano users could earn 4.5% per year by staking ADA You can run your own stake pool like we are doing or join an existing pool Cardano&amp;rsquo;s staking model is designed to avoid centralization and your ADA never leaves your control  Cardano has launched its Shelley upgrade, which introduces staking rewards for users who hold the ADA cryptocurrency. Here’s what you can expect from Cardano’s staking features.</description>
+    </item>
+    
+    <item>
+      <title>About us</title>
+      <link>/about/</link>
+      <pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hello there Who are we?
+We are a team of developers and Dev Ops who have worked together for the last four years on an traditaional finance platfrom called Fiskl.
+Although there are only five of us we cover the contients of North America, Europe, Africa and Australasia. So if you are from Antarctica, Asia or South America then join us so we can cover the globe.
+We are responsible for building the Cardano Staking pool alt-f which stands for Another Future.</description>
+    </item>
+    
+    <item>
+      <title>Showcase</title>
+      <link>/staking/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/staking/</guid>
+      <description>Header 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. Donec quis dolor nec nunc mollis interdum vel in purus. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare. Nullam ut neque quam.</description>
+    </item>
+    
+  </channel>
+</rss>

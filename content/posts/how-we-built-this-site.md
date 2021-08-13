@@ -23,14 +23,14 @@ Spoiler alert: We did it using [**Hugo**](https://gohugo.io/), a framework for b
 
 ## Hosting requirements
 
-- As easy and cheap as possible.
+- As easy and as affordable as possible.
 - Safe & reliable.
 
 Using this list we put out the question to our developer friends and [**Hugo**](https://gohugo.io/) was somewhere in the mix.
 
-We watched one video on YouTube!
+We watched one video on YouTube about Hugo!
 
-[![The Simple Engineer](/img/hugo-in-10-mins.jpeg)](https://www.youtube.com/watch?v=qtIqKaDlqXo&list=PLLAZ4kZ9dFpOnyRlyS-liKL5ReHDcj4G3)
+{{< youtube id="qtIqKaDlqXo" title="Introduction to Hugo | Hugo - Static Site Generator | Tutorial 1" >}}
 
 Had the site running in 20 minutes using the theme [**Terminal**](https://github.com/panr/hugo-theme-terminal) by [**panr**](https://github.com/panr)
 
@@ -42,10 +42,10 @@ We did not like the the option using GitHub Pages so went for [**Netlify**](http
 
 Our workflow:
 
-- Commit content to a git dev branch.
-- Merge to main branch when complete.
+- Commit content to a git `dev` branch.
+- Merge to `main` branch when complete.
 - Push to Github.
-- Netlify auto detects new changes on master and deploys.
+- Netlify auto detects new changes on `main` and deploys the site.
 
 It couldn't be more simple!
 
