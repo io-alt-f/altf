@@ -307,3 +307,5 @@ ls /home/ec2-user/cardano/output
 ```
 
 Now we should see `protocol.json`. This will important later when setting up a Stake Pool.
+
+final why 
