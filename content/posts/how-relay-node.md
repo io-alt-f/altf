@@ -1,9 +1,9 @@
 +++
-title = "How to set up a Cardano relay node"
+title = "How to set up Cardano relay nodes"
 date = "2021-08-16T11:36:15+01:00"
 author = ""
 authorTwitter = "" #do not include @
-cover = ""
+cover = "img/cardano-relay.png"
 tags = ["cardano", "relay-node", "AWS"]
 keywords = ["", ""]
 description = "How to set up and run a Cardano relay node"
@@ -195,6 +195,18 @@ docker cp /home/ec2-user/cardano/config/mainnet-config.json tmp:/var/cardano/con
 docker rm -f tmp
 ````
 
+````properties
+docker run --name=tmp -v cardano-output:/var/cardano/output centos
+
+docker cp /home/ec2-user/cardano/config/mainnet-relay-topology.json tmp:/var/cardano/config/mainnet-relay-topology.json
+docker cp /home/ec2-user/cardano/config/mainnet-byron-genesis.json tmp:/var/cardano/config/mainnet-byron-genesis.json
+docker cp /home/ec2-user/cardano/config/mainnet-shelley-genesis.json tmp:/var/cardano/config/mainnet-shelley-genesis.json
+docker cp /home/ec2-user/cardano/config/mainnet-alonzo-genesis.json tmp:/var/cardano/config/mainnet-alonzo-genesis.json
+docker cp /home/ec2-user/cardano/config/mainnet-config.json tmp:/var/cardano/config/mainnet-config.json
+
+docker rm -f tmp
+````
+
 We just created a volume `cardano-relay-config` that links the host and the docker instance file systems.
 
 Useful commands for inspecting volumes:
@@ -311,11 +323,11 @@ So we have two options:
 
 We will use the previously mapped *`ipc`* volume and mapping an *`output`* volume we can see the output of the commands created in the docker container on our local host.
 
-Create the alias
+#### Create the cardano-cli alias
 
 ```shell
 alias cardano-cli="docker run -it --rm \
-  -v /home/ec2-user/cardano/output:/var/cardano/local \
+  -v /home/ec2-user/cardano/output:/var/cardano/output \
   -v ipc:/opt/cardano/ipc \
   nessusio/cardano-node cardano-cli"
 ```

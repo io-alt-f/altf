@@ -1,31 +1,60 @@
 +++
-title = "How to set up a Stake Pool. Part 2"
+title = "How to set up a Stake Pool. (Part 1 \"Keys\")"
 date = "2021-08-17T08:53:41+01:00"
 author = ""
 authorTwitter = "" #do not include @
 cover = ""
 tags = ["Cardano", "Staking"]
 keywords = ["Cardano", "Stake pool"]
-description = "How to set up a Stake Pool in Cardano"
+description = "Create your Cardano Stake Pool keys"
 showFullContent = false
 +++
 
+## 1. Overview
 
-## 1. Set up a stake pool
+The official course can be found here [`cardano foundation`](https://cardano-foundation.gitbook.io/stake-pool-course/stake-pool-guide/system-setup)
 
-If you set up your stake pool keys and addresses via the cardano-cli
+The goals for document.
 
-### 1.1 Create your stake pool keys
+- Create all the Keys needed to run a Stake Pool.
+- Explain what all those keys are.
+- Show you how to convert your keys you have created in Daedalus or Yori wallets to use when creating your Stake Pool. (Optional)
 
-IMPORTANT for mainnet you need to keep your keys in cold storage
+IMPORTANT for mainnet you need to keep your keys in cold storage. We are going to create mainnet keys in this document.
+
+At the end of this we will have the following keys
+
+| Key  | Description |
+| -----|-------------|
+| payment.vkey     | Payment verification key            |
+|  payment.skey   |   Payment signing key          |
+|  stake.vkey    |    Staking verification key         |
+|  stake.skey    |   Staking signing key          |
+|  stake.addr    |    Registered stake address         |
+|  paymentwithstake.addr    |   Funded address linked to stake          |
+|  cold.vkey    |    Cold verification key         |
+|  cold.skey    |    Cold signing key         |
+|  cold.counter    |  Issue counter           |
+|  node.cert    |    Operational certificate         |
+|  kes.vkey    |   KES verification key          |
+|   kes.skey   |   KES signing key          |
+|   vrf.vkey   |   VRF verification key          |
+|  vrf.skey    |   VRF signing key          |
+
+    The core node will need:
+    Cold Key pair
+    VRF Key pair
+    KES Key pair
+    Operational Certificate
+
 
 ### 1.1.1 Create your stake keypairs
 
-```properties
-cardano-cli stake-address key-gen \
+You should have your alias `cardano-cli` set. If not see here [here]({{< ref "how-relay-node.md#create-the-cardano-cli-alias" >}} "Alias")
+
+ ardano-cli stake-address key-gen \
  --verification-key-file /var/cardano/output/stake.vkey \
  --signing-key-file /var/cardano/output/stake.skey
- ```
 
 ### 1.1.2 Create your stake address
 

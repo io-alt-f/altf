@@ -1,12 +1,12 @@
 +++
 title = "Monitoring With Prometheus - Part 1"
 date = "2021-08-17T12:34:59+01:00"
-author = ""
+author = "Shawn V"
 authorTwitter = "" #do not include @
-cover = ""
+cover = "img/p2.jpg"
 tags = ["Grafana", "Prometheus"]
 keywords = ["Prometheus", "Grafana"]
-description = "Install Prometheus and Grafana"
+description = "Installing and configuring Prometheus and Grafana"
 showFullContent = false
 +++
 
