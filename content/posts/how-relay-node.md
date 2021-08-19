@@ -171,6 +171,16 @@ docker rm prodrl1
 
 ### 2.3 Create docker volumes
 
+If you want to monitor your application using Prometheus and Grafana you will need to edit the file `mainnet-config.json` before we copy it.
+Uncomment the section
+
+```yaml
+  hasPrometheus:
+    - "127.0.0.1"
+    - 12789
+```
+
+
 Create a volume where we will store the custom configuration and keys
 
 ````properties
