@@ -257,6 +257,7 @@ docker run --detach --network prod-cardano-bridge \
     -e CARDANO_NETWORK=mainnet \
     -e CARDANO_CONFIG=/var/cardano/config/mainnet-config.json \
     -e CARDANO_UPDATE_TOPOLOGY=true \
+    -e CARDANO_NODE_SOCKET_PATH=/opt/cardano/ipc \
     -v ipc:/opt/cardano/ipc \
     -v /home/ec2-user/cardano/data/prodrl1:/opt/cardano/data \
     -v cardano-relay-config:/var/cardano/config  \
@@ -274,6 +275,7 @@ docker run --detach --network prod-cardano-bridge \
     -e CARDANO_PORT=3002 \
     -e CARDANO_NETWORK=mainnet \
     -e CARDANO_UPDATE_TOPOLOGY=true \
+    -e CARDANO_NODE_SOCKET_PATH=/opt/cardano/ipc \
     -v ipc:/opt/cardano/ipc \
     -v /home/ec2-user/cardano/data/prodrl2:/opt/cardano/data \
     -v cardano-relay-config:/var/cardano/config  \
@@ -332,11 +334,13 @@ alias cardano-cli="docker run -it --rm \
   nessusio/cardano-node cardano-cli"
 ```
 
-Verify the command is working
+Verify the command is working.
 
 ```shell
 cardano-cli --version 
 ```
+
+Add this alias to your ~/.bashrc file or whatever shell file you are using so it's always available.
 
 Now for the real reason that we mapped the output volume to `cardano-cli`
 Lets run a command outputs a file as the result. `Note` by the time you read this we may have moved to a later era than `--mary-era`

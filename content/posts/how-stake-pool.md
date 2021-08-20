@@ -300,8 +300,3 @@ cardano-cli address key-gen --verification-key-file /var/cardano/local/payment.v
 cardano-cli address build --payment-verification-key-file /var/cardano/local/payment.vkey --out-file /var/cardano/local/payment.addr --mainnet
 
 cardano-cli query utxo  --address $(cat payment.addr) --mainnet
-
-
-
-
-

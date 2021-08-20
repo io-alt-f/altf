@@ -26,33 +26,89 @@ At the end of this we will have the following keys
 
 | Key  | Description |
 | -----|-------------|
-| payment.vkey     | Payment verification key            |
+|  cold.vkey    |    Cold verification key [here]({{< ref "#1-cold-keys" >}})      |
+|   vrf.vkey   |   VRF verification key  [here]({{< ref "#2-vrf-key-pair" >}})      |
+|  vrf.skey    |   VRF signing key          |
+|  kes.vkey    |   KES verification key  [here]({{< ref "#3-kes-key-pair" >}})         |
+|   kes.skey   |   KES signing key          |
+|  payment.vkey     | Payment verification key            |
 |  payment.skey   |   Payment signing key          |
 |  stake.vkey    |    Staking verification key         |
 |  stake.skey    |   Staking signing key          |
 |  stake.addr    |    Registered stake address         |
 |  paymentwithstake.addr    |   Funded address linked to stake          |
-|  cold.vkey    |    Cold verification key         |
 |  cold.skey    |    Cold signing key         |
 |  cold.counter    |  Issue counter           |
 |  node.cert    |    Operational certificate         |
-|  kes.vkey    |   KES verification key          |
-|   kes.skey   |   KES signing key          |
-|   vrf.vkey   |   VRF verification key          |
-|  vrf.skey    |   VRF signing key          |
-
-    The core node will need:
-    Cold Key pair
-    VRF Key pair
-    KES Key pair
-    Operational Certificate
 
 
-### 1.1.1 Create your stake keypairs
+
+ 
+    These "Node" keys represent the security of the blockchain and consist of the following keys
+    - Cold Key pair
+    - VRF Key pair
+    - KES Key pair
+    - Operational Certificate
+
+
 
 You should have your alias `cardano-cli` set. If not see here [here]({{< ref "how-relay-node.md#create-the-cardano-cli-alias" >}} "Alias")
 
- ardano-cli stake-address key-gen \
+## 1. Cold Keys
+
+```shell
+cardano-cli node key-gen \
+--cold-verification-key-file /var/cardano/output/cold.vkey \
+--cold-signing-key-file /var/cardano/output/cold.skey \
+--operational-certificate-issue-counter-file /var/cardano/output/cold.counter
+```
+
+## 2. VRF Key pair
+
+```shell
+cardano-cli node key-gen-VRF \
+--verification-key-file /var/cardano/output/vrf.vkey \
+--signing-key-file /var/cardano/output/vrf.skey
+```
+
+## 3. KES Key pair
+
+    To create an operational certificate for a block-producing node, you need a Key Evolving Signature (KES) key pair, which authenticates who you are.
+    A KES key can only evolve for a certain number of periods and becomes useless afterwards. 
+    After the set number of periods has passed, the node operator must generate a new KES key pair, issue a new operational node certificate with that new key pair, and restart the node with the new certificate.
+
+```shell
+cardano-cli node key-gen-KES \
+--verification-key-file /var/cardano/output/kes.vkey \
+--signing-key-file /var/cardano/output/kes.skey
+```
+
+## 3. Operational certificates
+
+    These are operators’ offline key pairs that include a certificate counter for new certificates. 
+    It is the responsibility of the operator to manage both the hot (online), and cold (offline) keys for the pool. 
+    Cold keys must be secure and should not reside on a device with internet connectivity. It is recommended to keep multiple backups of cold keys.
+
+Firstly, we need to know the slots per KES period, we get it from the genesis file:
+
+```shell
+cat ~/cardano/config/mainnet-shelley-genesis.json | grep KESPeriod
+```
+
+`slotsPerKESPeriod": 129600`
+
+So one period lasts `129600` slots.
+
+Now we need the tip of the blockchain so we query using our Cardano node.
+
+```shell
+cardano-cli query tip --testnet-magic 1097911063
+```
+
+
+### 1 Create your stake keypairs
+
+ cardano-cli stake-address key-gen \
  --verification-key-file /var/cardano/output/stake.vkey \
  --signing-key-file /var/cardano/output/stake.skey
 
