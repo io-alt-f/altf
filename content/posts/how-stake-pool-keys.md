@@ -22,8 +22,7 @@ The goals for document.
 
 IMPORTANT for mainnet you need to keep your keys in cold storage. We are going to create mainnet keys in this document.
 
-At the end of this we will have the following keys
-
+At the end of this we will have the following keys http://localhost:1313/posts/how-stake-pool-keys/#9-regenerate-payment-address
 | Key  | Description |
 | -----|-------------|
 |  cold.vkey    |    Cold verification key [here]({{< ref "#1-cold-keys" >}})      |
@@ -31,26 +30,22 @@ At the end of this we will have the following keys
 |  vrf.skey    |   VRF signing key          |
 |  kes.vkey    |   KES verification key  [here]({{< ref "#3-kes-key-pair" >}})         |
 |   kes.skey   |   KES signing key          |
-|  payment.vkey     | Payment verification key            |
-|  payment.skey   |   Payment signing key          |
-|  stake.vkey    |    Staking verification key         |
+|  node.cert    |    Operational certificate   [here]({{< ref "#4-operational-certificates" >}})       |
+|  stake.vkey    |    Staking verification key [here]({{< ref "#5-create-your-stake-keypairs" >}})      |
 |  stake.skey    |   Staking signing key          |
-|  stake.addr    |    Registered stake address         |
-|  paymentwithstake.addr    |   Funded address linked to stake          |
-|  cold.skey    |    Cold signing key         |
-|  cold.counter    |  Issue counter           |
-|  node.cert    |    Operational certificate         |
+|  stake.addr    |    Registered stake address  [here]({{< ref "#6-create-your-stake-address" >}})        |
+|  payment.vkey     | Payment verification key   [here]({{< ref "#7-create-your-payment-key-pair" >}})          |
+|  payment.skey   |   Payment signing key      [here]({{< ref "#7-create-your-payment-key-pair" >}})     |
+|  payment.addr     | Payment address  [here]({{< ref "#8-create-your-payment-address" >}})           |
+|  paymentwithstake.addr    |   Funded address linked to stake   [here]({{< ref "#9-regenerate-payment-address" >}})         |
+|  cold.skey    |    Cold signing key   [here]({{< ref "#1-cold-keys" >}})        |
+|  cold.counter    |  Issue counter    [here]({{< ref "#1-cold-keys" >}})         |
 
-
-
- 
     These "Node" keys represent the security of the blockchain and consist of the following keys
     - Cold Key pair
     - VRF Key pair
     - KES Key pair
     - Operational Certificate
-
-
 
 You should have your alias `cardano-cli` set. If not see here [here]({{< ref "how-relay-node.md#create-the-cardano-cli-alias" >}} "Alias")
 
@@ -73,9 +68,9 @@ cardano-cli node key-gen-VRF \
 
 ## 3. KES Key pair
 
-    To create an operational certificate for a block-producing node, you need a Key Evolving Signature (KES) key pair, which authenticates who you are.
-    A KES key can only evolve for a certain number of periods and becomes useless afterwards. 
-    After the set number of periods has passed, the node operator must generate a new KES key pair, issue a new operational node certificate with that new key pair, and restart the node with the new certificate.
+To create an operational certificate for a block-producing node, you need a Key Evolving Signature (KES) key pair, which authenticates who you are.  
+A KES key can only evolve for a certain number of periods and becomes useless.  
+After the set number of periods has passed we must generate a new KES key pair, issue a new operational node certificate with that new key pair, and restart the node with the new certificate. We will add this to our Stake Pool monitoring.
 
 ```shell
 cardano-cli node key-gen-KES \
@@ -83,13 +78,16 @@ cardano-cli node key-gen-KES \
 --signing-key-file /var/cardano/output/kes.skey
 ```
 
-## 3. Operational certificates
+## 4. Operational certificates
 
-    These are operators’ offline key pairs that include a certificate counter for new certificates. 
-    It is the responsibility of the operator to manage both the hot (online), and cold (offline) keys for the pool. 
-    Cold keys must be secure and should not reside on a device with internet connectivity. It is recommended to keep multiple backups of cold keys.
+These are our offline key pairs that include a certificate counter for new certificates.
+It's our responsibility as Stake Pool operator to manage both the hot (online), and cold (offline) keys for the pool.  
+Cold keys must be secure and should not reside on a device with internet connectivity.  
+You *_MUST_* keep multiple backups of cold keys.
 
-Firstly, we need to know the slots per KES period, we get it from the genesis file:
+To generate the certificate we need to find the KES period and the current Slot and divide them with each other. 
+
+Step 1. Get the slots per KES period, we get it from the genesis file:
 
 ```shell
 cat ~/cardano/config/mainnet-shelley-genesis.json | grep KESPeriod
@@ -99,41 +97,106 @@ cat ~/cardano/config/mainnet-shelley-genesis.json | grep KESPeriod
 
 So one period lasts `129600` slots.
 
-Now we need the tip of the blockchain so we query using our Cardano node.
+Step 2. Find the tip of the blockchain. We use our cardano-cli alias on our relay node.
 
 ```shell
-cardano-cli query tip --testnet-magic 1097911063
+cardano-cli query tip --mainnet
 ```
 
+```json
+{
+    "epoch": 285,
+    "hash": "75958bc41a3332731260c7c554585d9cef6ec1663eb006cdf3ff901c7f442593",
+    "slot": 37884883,
+    "block": 6136223,
+    "era": "Mary"
+}
+```
+```json
+{
+    expr 37884883 / 129600
 
-### 1 Create your stake keypairs
+    > 292
+}
+```
 
+    Note: You have to calculate these as the result will be different when you come to generate your certificate.
+
+ Step 3. Generate the certificate
+
+ ```bash
+ cardano-cli node issue-op-cert \
+--kes-verification-key-file /var/cardano/output/kes.vkey \
+--cold-signing-key-file /var/cardano/output/cold.skey \
+--operational-certificate-issue-counter /var/cardano/output/cold.counter \
+--kes-period 292 \
+--out-file /var/cardano/output/node.cert
+ ```
+
+### 5 Create your stake keypairs
+
+ ```bash
  cardano-cli stake-address key-gen \
  --verification-key-file /var/cardano/output/stake.vkey \
  --signing-key-file /var/cardano/output/stake.skey
+```
 
-### 1.1.2 Create your stake address
+### 6 Create your stake address
 
 Now, we can create our stake address. This address CAN'T receive payments but will receive the rewards from participating in the protocol. We will save this address in the file stake.addr
 
-```properties
+```bash
 cardano-cli stake-address build \
  --stake-verification-key-file /var/cardano/output/stake.vkey \
  --out-file /var/cardano/output/stake.addr \
  --mainnet
  ```
 
-### 1.1.3 Regenerate payment address
+### 7 Create your payment key pair
 
- Now that we have a stake address, it is time to regenerate a payment address. This time we use both the stake verification key and payment verification key to build the address. With this, both addresses will be linked together and associated with one another.
+```bash
+ cardano-cli address key-gen \
+ --verification-key-file /var/cardano/output/payment.vkey \
+ --signing-key-file /var/cardano/output/payment.skey
+ ```
 
-```properties
-cardano-cli address build \
+### 8 Create your payment address
+
+We then use `payment.vkey` to create our payment address `payment.addr`:
+
+```bash
+ cardano-cli address build \
+ --payment-verification-key-file /var/cardano/output/payment.vkey \
+ --out-file /var/cardano/output/payment.addr \
+ --mainnet
+ ```
+
+### 9 Regenerate payment address
+
+Now that we have a stake address, it is time to regenerate a payment address.  
+This time we use both the `stake.vkey` and `payment.vkey` to build the address.  
+With this, both addresses will be linked together and associated with one another.
+
+```bash
+ cardano-cli address build \
  --payment-verification-key-file /var/cardano/output/payment.vkey \
  --stake-verification-key-file /var/cardano/output/stake.vkey \
  --out-file /var/cardano/output/paymentwithstake.addr \
  --mainnet
  ```
+
+### Copy your keys to offline storage
+
+We want to keep the cold keys somewhere safe and have multiple copies. They need to be removed from any machine with internet access.
+
+```bash
+scp -i your-aws.pem  'ec2-user@x.x.x.x.x:~/cardano/output/\cold*' ~/Downloads/cold-keys/
+```
+
+Later on we will register our pool in the blockchain.
+
+Remove below 
+
 
  ## 2.1 Register stake address in the blockchain
 

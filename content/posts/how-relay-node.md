@@ -113,7 +113,7 @@ wget https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-fi
 wget https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-alonzo-genesis.json  -P /home/ec2-user/cardano/config/
 ````
 
-#### 2.2 Create the topology file
+<!-- #### 2.2 Create the topology file
 
 Create a file called /home/ec2-user/cardano/config/mainnet-relay-topology.json
 Add the JSON to this file and save
@@ -128,7 +128,7 @@ Add the JSON to this file and save
     }
   ]
 }
-```
+``` -->
 
 #### 2.3 Start the node with basic configuration
 
@@ -144,11 +144,11 @@ docker run --detach \
 What does this command do?
 Uses [docker run](https://docs.docker.com/engine/reference/run/) command
 
-    --detach runs in the background
-    -p 3001:3001  Maps the Docker containers port to the host port
-    -e CARDANO_UPDATE_TOPOLOGY=true Sets an environment variable in the docker container
-    -v node-data:/opt/cardano/data  Maps a volume /opt/cardano/data/prodrl1 on the container to a name node-data
-    nessusio/cardano-node run  Uses the image nessusio/cardano-node  and calls `run` to start the container
+-> --detach runs in the background  
+-> -p 3001:3001  Maps the Docker containers port to the host port  
+-> -e CARDANO_UPDATE_TOPOLOGY=true Sets an environment variable in the docker container  
+-> -v node-data:/opt/cardano/data  Maps a volume /opt/cardano/data/prodrl1 on the container to a name node-data
+nessusio/cardano-node run  Uses the image [nessusio/cardano-node](https://hub.docker.com/r/nessusio/cardano-node)  and calls `run` to start the container
 
 
 See the docker process
@@ -180,25 +180,12 @@ Uncomment the section
     - 12789
 ```
 
-
 Create a volume where we will store the custom configuration and keys
 
 ````properties
 docker run --name=tmp -v cardano-relay-config:/var/cardano/config centos
 
-docker cp /home/ec2-user/cardano/config/mainnet-relay-topology.json tmp:/var/cardano/config/mainnet-relay-topology.json
-docker cp /home/ec2-user/cardano/config/mainnet-byron-genesis.json tmp:/var/cardano/config/mainnet-byron-genesis.json
-docker cp /home/ec2-user/cardano/config/mainnet-shelley-genesis.json tmp:/var/cardano/config/mainnet-shelley-genesis.json
-docker cp /home/ec2-user/cardano/config/mainnet-alonzo-genesis.json tmp:/var/cardano/config/mainnet-alonzo-genesis.json
-docker cp /home/ec2-user/cardano/config/mainnet-config.json tmp:/var/cardano/config/mainnet-config.json
-
-docker rm -f tmp
-````
-
-````properties
-docker run --name=tmp -v cardano-output:/var/cardano/output centos
-
-docker cp /home/ec2-user/cardano/config/mainnet-relay-topology.json tmp:/var/cardano/config/mainnet-relay-topology.json
+docker cp /home/ec2-user/cardano/config/mainnet-topology.json tmp:/var/cardano/config/mainnet-topology.json
 docker cp /home/ec2-user/cardano/config/mainnet-byron-genesis.json tmp:/var/cardano/config/mainnet-byron-genesis.json
 docker cp /home/ec2-user/cardano/config/mainnet-shelley-genesis.json tmp:/var/cardano/config/mainnet-shelley-genesis.json
 docker cp /home/ec2-user/cardano/config/mainnet-alonzo-genesis.json tmp:/var/cardano/config/mainnet-alonzo-genesis.json
@@ -256,7 +243,7 @@ docker run --detach --network prod-cardano-bridge \
     -e CARDANO_PORT=3001 \
     -e CARDANO_NETWORK=mainnet \
     -e CARDANO_CONFIG=/var/cardano/config/mainnet-config.json \
-    -e CARDANO_UPDATE_TOPOLOGY=true \
+    -e CARDANO_TOPOLOGY=/var/cardano/config/mainnet-topology.json \
     -e CARDANO_NODE_SOCKET_PATH=/opt/cardano/ipc \
     -v ipc:/opt/cardano/ipc \
     -v /home/ec2-user/cardano/data/prodrl1:/opt/cardano/data \
@@ -274,7 +261,9 @@ docker run --detach --network prod-cardano-bridge \
     -p 3002:3002 \
     -e CARDANO_PORT=3002 \
     -e CARDANO_NETWORK=mainnet \
+    -e CARDANO_CONFIG=/var/cardano/config/mainnet-config.json \
     -e CARDANO_UPDATE_TOPOLOGY=true \
+    -e CARDANO_TOPOLOGY=/var/cardano/config/mainnet-relay-topology.json \
     -e CARDANO_NODE_SOCKET_PATH=/opt/cardano/ipc \
     -v ipc:/opt/cardano/ipc \
     -v /home/ec2-user/cardano/data/prodrl2:/opt/cardano/data \

@@ -177,7 +177,7 @@ We are going to run in Docker.
 We need to create the configuration file `prometheus.yml`
 
 ```shell
-mkdir ~/prometheus; mkdir docker-config
+mkdir ~/prometheus; mkdir ~/prometheus/docker-config
 touch ~/prometheus/docker-config/prometheus.yml
 ```
 
